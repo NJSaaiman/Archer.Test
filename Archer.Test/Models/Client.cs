@@ -16,5 +16,7 @@ namespace Archer.Test.Models
         [StringLength(255)]
         public string Name { get; set; }
         public List<ClientData> Data { get; set; }
+        [StringLength(255)]
+        public string IOWorkerName { get; set; }
     }
 }
