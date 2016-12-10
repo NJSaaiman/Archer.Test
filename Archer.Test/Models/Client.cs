@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Archer.Test.Models
 {
+    [Table("Clients")]
     public class Client
     {
         public Client()
@@ -15,6 +16,7 @@ namespace Archer.Test.Models
         public int Id { get; set; }
         [StringLength(255)]
         public string Name { get; set; }
+        
         public List<ClientData> Data { get; set; }
         [StringLength(255)]
         public string IOWorkerName { get; set; }

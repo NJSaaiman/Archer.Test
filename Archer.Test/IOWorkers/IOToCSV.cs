@@ -8,22 +8,38 @@ using System.IO;
 
 namespace Archer.Test.IOWorkers
 {
-    class IOClientA : IOBase
+    class IOToCSV : IOBase
     {
-        public IOClientA(List<ClientDataDTO> data) : base(data)
+        protected override string Extention
+        {
+            get
+            {
+                return ".csv";
+            }
+        }
+
+        public override string Type
+        {
+            get
+            {
+                return "CSV";
+            }
+        }
+
+        public IOToCSV(List<ClientDataDTO> data) : base(data)
         {
         }
-        public IOClientA() : base() { }
+        public IOToCSV() : base() { }
 
         public override void Export(string fileName)
         {
             StringBuilder sb = new StringBuilder();
             if (Data.Count > 0)
             {
-                Data.ForEach(x => sb.AppendLine(string.Join(",", new string[] { x.Name, x.CellNumber, x.EmailAddress})));
+                Data.ForEach(x => sb.AppendLine(string.Join(",", new string[] { x.Name, x.CellNumber, x.EmailAddress })));
             }
 
-            File.WriteAllText(fileName+".csv", sb.ToString());
+            File.WriteAllText(fileName + Extention, sb.ToString());
 
         }
 
@@ -31,7 +47,7 @@ namespace Archer.Test.IOWorkers
         {
             Data.Clear();
 
-            Data.AddRange((from line in File.ReadAllLines(fileName)
+            Data.AddRange((from line in File.ReadAllLines(fileName + Extention)
                            let columns = line.Split(',')
                            select new ClientDataDTO
                            {
@@ -39,6 +55,11 @@ namespace Archer.Test.IOWorkers
                                CellNumber = columns[1],
                                EmailAddress = columns[2]
                            }).ToList());
+
+            if (File.Exists(fileName + Extention))
+            {
+                File.Delete(fileName + Extention);
+            }
         }
     }
 }

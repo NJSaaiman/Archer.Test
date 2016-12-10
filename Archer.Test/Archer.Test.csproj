@@ -58,15 +58,25 @@
   <ItemGroup>
     <Compile Include="Contexts\ClientContext.cs" />
     <Compile Include="DTO\ClientDataDTO.cs" />
+    <Compile Include="EntityHandler.cs" />
     <Compile Include="Enums\DataMapTypes.cs" />
+    <Compile Include="Helpers\DataGenerator.cs" />
     <Compile Include="IOWorkers\IIOBase.cs" />
     <Compile Include="IOWorkers\IOBase.cs" />
-    <Compile Include="IOWorkers\IOClientA.cs" />
-    <Compile Include="IOWorkers\IOClientB.cs" />
+    <Compile Include="IOWorkers\IOToCSV.cs" />
+    <Compile Include="IOWorkers\IOToJson.cs" />
     <Compile Include="IOWorkers\IOFactory.cs" />
+    <Compile Include="Migrations\201612101714057_Initial.cs" />
+    <Compile Include="Migrations\201612101714057_Initial.Designer.cs">
+      <DependentUpon>201612101714057_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612101715395_AddIsValid.cs" />
+    <Compile Include="Migrations\201612101715395_AddIsValid.Designer.cs">
+      <DependentUpon>201612101715395_AddIsValid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\ClientData.cs" />
-    <Compile Include="Models\DataMap.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Helpers\Randomizer.cs" />
@@ -74,6 +84,14 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201612101714057_Initial.resx">
+      <DependentUpon>201612101714057_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612101715395_AddIsValid.resx">
+      <DependentUpon>201612101715395_AddIsValid.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

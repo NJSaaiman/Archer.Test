@@ -12,7 +12,7 @@ namespace Archer.Test.Contexts
     {
         public DbSet<Client> Clients { get; set; }
         public DbSet<ClientData> Data { get; set; }
-        public DbSet<DataMap> Map { get; set; }
+        
 
     }
 }

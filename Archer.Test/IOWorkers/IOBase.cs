@@ -12,6 +12,9 @@ namespace Archer.Test.IOWorkers
     {
         private List<ClientDataDTO> _data;
         public List<ClientDataDTO> Data { get { return _data; } }
+
+        protected abstract string Extention { get; }
+        public abstract string Type { get; }
         public IOBase(List<ClientDataDTO> data)
         {
             _data = data;
