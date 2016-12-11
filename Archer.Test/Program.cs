@@ -60,7 +60,7 @@ namespace Archer.Test
 
                 foreach (var client in handler.GetClients())
                 {
-                    WriteToConsole("Cell number test result for \"" + client.Name + "\"");
+                    WriteToConsole("Cell number test result for \"" + client.Name + "\" (" + handler.GetTotalEntries(client.Id) + " records)");
                     string[] result = handler.TestCellnumbers(client.Id);
                     for (int i = 0; i < result.Length; i++)
                     {

@@ -1,18 +1,15 @@
-﻿using Archer.Test.Models;
-using System;
+﻿using Archer.Test.Helpers;
+using Archer.Test.Models;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.Entity.Infrastructure;
-using Archer.Test.Helpers;
 using System.Data.Entity.Validation;
 
 namespace Archer.Test.Contexts
 {
-    public class ClientContext :DbContext
+    public class ClientContext : DbContext
     {
+        public ClientContext() : base(Config.Instance.DBName) { }
         public DbSet<Client> Clients { get; set; }
 
         public DbSet<ClientData> Data { get; set; }

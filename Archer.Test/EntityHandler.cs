@@ -80,6 +80,22 @@ namespace Archer.Test
 
         }
 
+        public int GetTotalEntries(int clientId)
+        {
+            using (var db = GetContext())
+            {
+
+                db.Configuration.AutoDetectChangesEnabled = false;
+
+                var count = (from c in db.Clients
+                             where c.Id == clientId
+                             let data = c.Data
+                             from d in data
+                             select d).Count();
+                return count;
+            }
+        }
+
         public string[] TestCellnumbers(int clientId)
         {
             using (var db = GetContext())
@@ -91,7 +107,6 @@ namespace Archer.Test
                               where c.Id == clientId
                               let data = c.Data
                               from d in data
-
                               select d);
 
                 var invalidClients = client.Where(x => !x.IsValid);
