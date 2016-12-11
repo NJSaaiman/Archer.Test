@@ -11,6 +11,7 @@ namespace Archer.Test.IOWorkers
 {
     class IOToJson : IOBase
     {
+        public IOToJson(List<ClientDataDTO> data) : base(data) { }
         protected override string Extention
         {
             get
@@ -18,7 +19,6 @@ namespace Archer.Test.IOWorkers
                 return ".json";
             }
         }
-
         public override string Type
         {
             get
@@ -26,26 +26,16 @@ namespace Archer.Test.IOWorkers
                 return "JSON";
             }
         }
-
-        public IOToJson(List<ClientDataDTO> data) : base(data)
-        {
-        }
-
-        public IOToJson() : base() { }
-
         public override void Export(string fileName)
         {
-            File.WriteAllText(fileName + Extention, JsonConvert.SerializeObject(Data));
+            File.WriteAllText(Path.Combine(Folder, fileName + Extention), JsonConvert.SerializeObject(Data));
         }
-
         public override void Import(string fileName)
         {
             Data.Clear();
-            Data.AddRange(JsonConvert.DeserializeObject<List<ClientDataDTO>>(File.ReadAllText(fileName + Extention)));
-            if (File.Exists(fileName + Extention))
-            {
-                File.Delete(fileName + Extention);
-            }
+
+            Data.AddRange(JsonConvert.DeserializeObject<List<ClientDataDTO>>(File.ReadAllText(Path.Combine(Folder, fileName + Extention))));
+            
         }
     }
 }

@@ -10,6 +10,7 @@ namespace Archer.Test.IOWorkers
 {
     class IOToCSV : IOBase
     {
+        public IOToCSV(List<ClientDataDTO> data) : base(data) { }
         protected override string Extention
         {
             get
@@ -17,7 +18,6 @@ namespace Archer.Test.IOWorkers
                 return ".csv";
             }
         }
-
         public override string Type
         {
             get
@@ -25,12 +25,6 @@ namespace Archer.Test.IOWorkers
                 return "CSV";
             }
         }
-
-        public IOToCSV(List<ClientDataDTO> data) : base(data)
-        {
-        }
-        public IOToCSV() : base() { }
-
         public override void Export(string fileName)
         {
             StringBuilder sb = new StringBuilder();
@@ -39,15 +33,14 @@ namespace Archer.Test.IOWorkers
                 Data.ForEach(x => sb.AppendLine(string.Join(",", new string[] { x.Name, x.CellNumber, x.EmailAddress })));
             }
 
-            File.WriteAllText(fileName + Extention, sb.ToString());
+            File.WriteAllText(Path.Combine(Folder, fileName + Extention), sb.ToString());
 
         }
-
         public override void Import(string fileName)
         {
             Data.Clear();
 
-            Data.AddRange((from line in File.ReadAllLines(fileName + Extention)
+            Data.AddRange((from line in File.ReadAllLines(Path.Combine(Folder, fileName + Extention))
                            let columns = line.Split(',')
                            select new ClientDataDTO
                            {
@@ -56,10 +49,6 @@ namespace Archer.Test.IOWorkers
                                EmailAddress = columns[2]
                            }).ToList());
 
-            if (File.Exists(fileName + Extention))
-            {
-                File.Delete(fileName + Extention);
-            }
         }
     }
 }

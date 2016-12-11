@@ -47,20 +47,17 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contexts\ClientContext.cs" />
     <Compile Include="DTO\ClientDataDTO.cs" />
     <Compile Include="EntityHandler.cs" />
-    <Compile Include="Enums\DataMapTypes.cs" />
+    <Compile Include="Helpers\Config.cs" />
     <Compile Include="Helpers\DataGenerator.cs" />
+    <Compile Include="Helpers\Validations.cs" />
     <Compile Include="IOWorkers\IIOBase.cs" />
     <Compile Include="IOWorkers\IOBase.cs" />
     <Compile Include="IOWorkers\IOToCSV.cs" />

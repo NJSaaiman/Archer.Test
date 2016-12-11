@@ -9,15 +9,17 @@ namespace Archer.Test.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+
         [StringLength(255)]
         public string Name { get; set; }
+
         [StringLength(255)]
         public string CellNumber { get; set; }
+
         [StringLength(255)]
         public string EmailAddress { get; set; }
 
         public bool IsValid { get; set; }
-
 
         [ForeignKey("Client")]
         public int ClientID { get; set; }

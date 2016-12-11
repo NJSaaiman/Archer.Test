@@ -21,10 +21,10 @@ namespace Archer.Test.Helpers
             }
         }
 
-        public static string GetCompanyName()
+        public static string GetCompanyName(string companyName)
         {
             Randomizer rnd = new Randomizer();
-            return rnd.GetCompanyName();
+            return rnd.GetCompanyName(companyName);
         }
     }
 }

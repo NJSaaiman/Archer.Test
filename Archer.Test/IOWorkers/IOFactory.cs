@@ -7,20 +7,29 @@ using System.Threading.Tasks;
 
 namespace Archer.Test.IOWorkers
 {
-    public static class IOFactory
+    public sealed class IOFactory
     {
-        public static IIOBase GetIOWorker(string name, List<ClientDataDTO> data)
+        private static readonly IOFactory _instance = new IOFactory();
+
+        public static IOFactory Instance
+        {
+            get
+            {
+                return _instance;
+            }
+        }
+
+        public IIOBase GetIOWorker(string name)
+        {
+            return GetIOWorker(name, null);
+        }
+        public IIOBase GetIOWorker(string name, List<ClientDataDTO> data)
         {
             Type type = Type.GetType(name, true);
             object newInstance = Activator.CreateInstance(type, data);
             return newInstance as IIOBase;
         }
 
-        public static IIOBase GetIOWorker(string name)
-        {
-            Type type = Type.GetType(name, true);
-            object newInstance = Activator.CreateInstance(type);
-            return newInstance as IIOBase;
-        }
+       
     }
 }

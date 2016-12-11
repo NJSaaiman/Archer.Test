@@ -11,5 +11,6 @@ namespace Archer.Test.IOWorkers
         bool AddRecord(ClientDataDTO data);
         void Export(string fileName);
         void Import(string fileName);
+        void DeleteFile(string fileName);
     }
 }
